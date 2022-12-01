@@ -42,11 +42,11 @@ head:
     rss: 
 navbar:
     menu:
-        Home: /
-        Archives: /archives
-        Categories: /categories
-        Tags: /tags
-        About: /about
+        主页: /
+        归档: /archives
+        分类: /categories
+        标签: /tags
+        关于: /about
     links:
         Download on GitHub:
             icon: fab fa-github
@@ -82,32 +82,32 @@ article:
 search:
     type: insight
     index_pages: true
-comment:
-    type: disqus
-    shortname: ''
-donates:
-    -
-        type: afdian
-        url: ''
-    -
-        type: alipay
-        qrcode: ''
-    -
-        type: buymeacoffee
-        url: ''
-    -
-        type: patreon
-        url: ''
-    -
-        type: paypal
-        business: ''
-        currency_code: USD
-    -
-        type: wechat
-        qrcode: ''
-share:
-    type: sharethis
-    install_url: ''
+# comment:
+#     type: disqus
+#     shortname: ''
+# donates:
+#     -
+#         type: afdian
+#         url: ''
+#     -
+#         type: alipay
+#         qrcode: ''
+#     -
+#         type: buymeacoffee
+#         url: ''
+#     -
+#         type: patreon
+#         url: ''
+    # -
+    #     type: paypal
+    #     business: ''
+    #     currency_code: USD
+    # -
+    #     type: wechat
+    #     qrcode: ''
+# share:
+#     type: sharethis
+#     install_url: ''
 sidebar:
     left:
         sticky: false
@@ -117,41 +117,41 @@ widgets:
     -
         position: left
         type: profile
-        author: Your name
-        author_title: Your title
-        location: Your location
+        author: Etsu
+        author_title: Application Developer
+        location: CN, Dalian
         avatar: 
         avatar_rounded: false
         gravatar: 
-        follow_link: https://github.com/ppoffice
-        social_links:
-            Github:
-                icon: fab fa-github
-                url: https://github.com/ppoffice
-            Facebook:
-                icon: fab fa-facebook
-                url: https://facebook.com
-            Twitter:
-                icon: fab fa-twitter
-                url: https://twitter.com
-            Dribbble:
-                icon: fab fa-dribbble
-                url: https://dribbble.com
-            RSS:
-                icon: fas fa-rss
-                url: /
+        # follow_link: https://github.com/ppoffice
+        # social_links:
+        #     Github:
+        #         icon: fab fa-github
+        #         url: https://github.com/ppoffice
+            # Facebook:
+            #     icon: fab fa-facebook
+            #     url: https://facebook.com
+            # Twitter:
+            #     icon: fab fa-twitter
+            #     url: https://twitter.com
+            # Dribbble:
+            #     icon: fab fa-dribbble
+            #     url: https://dribbble.com
+            # RSS:
+            #     icon: fas fa-rss
+            #     url: /
     -
         position: left
         type: toc
         index: true
         collapsed: true
         depth: 3
-    -
-        position: left
-        type: links
-        links:
-            Hexo: https://hexo.io
-            Bulma: https://bulma.io
+    # -
+        # position: left
+        # type: links
+        # links:
+        #     Hexo: https://hexo.io
+        #     Bulma: https://bulma.io
     -
         position: left
         type: categories
@@ -167,22 +167,22 @@ widgets:
         order_by: name
         amount: 
         show_count: true
-    -
-        position: left
-        type: subscribe_email
-        description: 
-        feedburner_id: ''
-    -
-        position: left
-        type: adsense
-        client_id: ''
-        slot_id: ''
-    -
-        position: left
-        type: followit
-        description: 
-        action_url: ''
-        verification_code: ''
+    # -
+    #     position: left
+    #     type: subscribe_email
+    #     description: 
+    #     feedburner_id: ''
+    # -
+        # position: left
+        # type: adsense
+        # client_id: ''
+        # slot_id: ''
+    # -
+        # position: left
+        # type: followit
+        # description: 
+        # action_url: ''
+        # verification_code: ''
 plugins:
     animejs: true
     back_to_top: true
