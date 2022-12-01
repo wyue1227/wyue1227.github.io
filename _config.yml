@@ -1,11 +1,11 @@
-title: Hexo
+title: blog
 subtitle: ''
-description: ''
+description: '分享、记录、生活、技术'
 keywords: null
-author: John Doe
+author: Etsu
 language: zh-CN
 timezone: ''
-url: http://example.com
+url: https://wyue1227.github.io/
 permalink: ':year/:month/:day/:title/'
 permalink_defaults: null
 pretty_urls:

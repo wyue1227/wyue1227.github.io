@@ -140,12 +140,12 @@ widgets:
             # RSS:
             #     icon: fas fa-rss
             #     url: /
-    -
-        position: left
-        type: toc
-        index: true
-        collapsed: true
-        depth: 3
+    # -
+    #     position: right
+    #     type: toc
+    #     index: true
+    #     collapsed: true
+    #     depth: 3
     # -
         # position: left
         # type: links
