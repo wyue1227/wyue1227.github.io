@@ -3,14 +3,14 @@ title: java编程思想第四版_第四章练习十_吸血鬼数答案
 date: 2020-03-22 14:42:06
 tags: Java
 categories: 编程入门
-excerpt: 代码与解析
+excerpt: Java入门题解
 toc: true
 typora-root-url: ../../source
 ---
 
 ## 题目
 
-![](../images/java编程思想第四版-第四章练习十-吸血鬼数答案/2022-12-05-15-01-44.png)
+![](/images/java编程思想第四版-第四章练习十-吸血鬼数答案/2022-12-05-15-01-44.png)
 
 ## 说明
 
