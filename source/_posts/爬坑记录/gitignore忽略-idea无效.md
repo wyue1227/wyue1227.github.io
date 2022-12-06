@@ -2,7 +2,7 @@
 title: gitignore忽略.idea无效
 date: 2021-07-08 00:08:53
 tags: [Git, IDEA]
-categories: 爬坑总结
+categories: 爬坑记录
 toc: true
 typora-root-url: ../../source
 ---
