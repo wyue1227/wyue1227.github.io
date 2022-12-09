@@ -50,18 +50,18 @@ navbar:
     links:
         Download on GitHub:
             icon: fab fa-github
-            url: https://github.com/ppoffice/hexo-theme-icarus
-footer:
-    links:
-        Creative Commons:
-            icon: fab fa-creative-commons
-            url: https://creativecommons.org/
-        Attribution 4.0 International:
-            icon: fab fa-creative-commons-by
-            url: https://creativecommons.org/licenses/by/4.0/
-        Download on GitHub:
-            icon: fab fa-github
-            url: https://github.com/ppoffice/hexo-theme-icarus
+            url: https://github.com/wyue1227/wyue1227.github.io
+# footer:
+#     links:
+#         Creative Commons:
+#             icon: fab fa-creative-commons
+#             url: https://creativecommons.org/
+#         Attribution 4.0 International:
+#             icon: fab fa-creative-commons-by
+#             url: https://creativecommons.org/licenses/by/4.0/
+#         Download on GitHub:
+#             icon: fab fa-github
+#             url: https://github.com/ppoffice/hexo-theme-icarus
 article:
     highlight:
         theme: atom-one-light
@@ -124,10 +124,10 @@ widgets:
         author: Etsu
         author_title: Application Developer
         location: CN, Dalian
-        avatar: 
+        avatar: https://avatars.githubusercontent.com/u/28826785
         avatar_rounded: false
         gravatar: 
-        # follow_link: https://github.com/ppoffice
+        follow_link: https://github.com/wyue1227
         # social_links:
         #     Github:
         #         icon: fab fa-github
