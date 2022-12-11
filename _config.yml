@@ -1,11 +1,11 @@
-title: Hexo
+title: 博客
 subtitle: ''
-description: ''
+description: '感谢Github提供了一个免费的记录分享平台'
 keywords: null
-author: John Doe
+author: Etsu
 language: zh-CN
 timezone: ''
-url: http://example.com
+url: https://wyue1227.github.io/
 permalink: ':year/:month/:day/:title/'
 permalink_defaults: null
 pretty_urls:
@@ -53,7 +53,7 @@ tag_map: null
 meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
-updated_option: mtime
+updated_option: 'date'
 per_page: 10
 pagination_dir: page
 include: null

@@ -1,0 +1,21 @@
+widgets:
+    -
+        type: recent_posts
+        position: left
+    -
+        type: categories
+        position: left
+    -
+        type: tags
+        position: left
+    -
+        position: right
+        type: toc
+        index: true
+        collapsed: true
+        depth: 3
+sidebar:
+    left:
+        sticky: false
+    right:
+        sticky: true
