@@ -68,7 +68,7 @@ article:
         clipboard: true
         fold: unfolded
     readtime: true
-    update_time: true
+    update_time: false
     licenses:
         Creative Commons:
             icon: fab fa-creative-commons
