@@ -1,7 +1,7 @@
 widgets:
-    -
-        type: recent_posts
-        position: left
+    # -
+    #     type: recent_posts
+    #     position: left
     -
         type: categories
         position: left
