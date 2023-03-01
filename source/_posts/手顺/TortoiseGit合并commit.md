@@ -4,6 +4,7 @@ date: 2023-03-01 20:54:28
 updated: 2023-03-01 20:54:28
 tags: [Git, TortoiseGit]
 categories: 手顺
+excerpt: TortoiseGit -> Combine to one commit
 ---
 ### 1 查看log
 
@@ -29,5 +30,8 @@ categories: 手顺
 
 #### 5.1 本地log
 
+![](images/TortoiseGit合并commit/2023-03-01-20-59-51.png)
 
 #### 5.2 GitHub commit履历
+
+![](images/TortoiseGit合并commit/2023-03-01-21-00-04.png)
