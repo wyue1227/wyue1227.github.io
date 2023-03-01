@@ -73,6 +73,8 @@ class Test:
         data = func()
 ```
 
+更多参照：[https://mozillazg.com/2016/03/python-exec-function-globals-and-locals-arguments.html](https://mozillazg.com/2016/03/python-exec-function-globals-and-locals-arguments.html)
+
 ### 常用文件处理
 
 ```python
