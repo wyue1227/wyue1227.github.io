@@ -5,7 +5,6 @@ tags: [Windows, Gosu, 开发]
 categories: 手顺
 excerpt: 目前的项目基于Guidewire框架，使用的开发语言是Gosu。在个人机器上搭建Gosu的开发环境用于学习语法特性。
 toc: true
-typora-root-url: ../../source
 ---
 
 ## 背景

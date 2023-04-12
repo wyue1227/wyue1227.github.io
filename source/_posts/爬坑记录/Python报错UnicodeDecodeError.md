@@ -5,7 +5,6 @@ updated: 2023-02-14 21:11:10
 tags: [Python]
 categories: 爬坑记录
 toc: true
-typora-root-url: ../../source
 ---
 
 ## 背景

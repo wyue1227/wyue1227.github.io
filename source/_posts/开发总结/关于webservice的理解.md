@@ -5,7 +5,6 @@ tags: Web
 categories: 开发总结
 excerpt: 在梳理笔记的时候看到了上一个项目开发时记录的总结，遂决定理清一些模糊的概念。
 toc: true
-typora-root-url: ../../source
 ---
 ## 背景
 

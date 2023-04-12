@@ -5,7 +5,6 @@ tags: Java
 categories: 编程入门
 excerpt: Java入门题解
 toc: true
-typora-root-url: ../../source
 ---
 
 ## 题目

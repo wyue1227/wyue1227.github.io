@@ -4,7 +4,6 @@ date: 2021-05-19 15:47:11
 tags: Windows
 categories: 手顺
 toc: true
-typora-root-url: ../../source
 ---
 ## 问题背景
 

@@ -6,7 +6,6 @@ tags: [Moji]
 categories: 日语学习
 excerpt: 记录做过的Moji日语题
 toc: true
-typora-root-url: ../../source
 ---
 
 ## [295](https://www.mojidict.com/article/bNzFSOxogM)

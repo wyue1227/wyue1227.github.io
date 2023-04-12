@@ -6,7 +6,6 @@ tags: [Java]
 categories: 手顺
 excerpt: 在服务器上部署新蜂商城的API
 toc: true
-typora-root-url: ../../source
 ---
 
 ## 简介

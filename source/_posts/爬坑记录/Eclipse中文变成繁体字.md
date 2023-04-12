@@ -6,7 +6,6 @@ tags: Eclipse
 categories: 爬坑记录
 excerpt: Eclipse中，格式化代码 Ctrl + Shift + F，同时是搜狗的简繁体转换快捷键。
 toc: true
-typora-root-url: ../../source
 ---
 
 ## 问题描述：

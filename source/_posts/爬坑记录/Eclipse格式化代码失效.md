@@ -6,7 +6,6 @@ tags: Eclipse
 categories: 爬坑记录
 excerpt: Ctrl + shift + F 跟Windows原生输入法的简繁体转换冲突，需要关闭输入法的简繁体转换。
 toc: true
-typora-root-url: ../../source
 ---
 
 ## 原因

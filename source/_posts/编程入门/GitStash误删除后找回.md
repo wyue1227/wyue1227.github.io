@@ -6,7 +6,6 @@ tags: Git
 categories: 
 - 编程入门
 toc: true
-typora-root-url: ../../source
 ---
 
 ### 背景
