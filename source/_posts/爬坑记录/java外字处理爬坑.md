@@ -21,12 +21,12 @@ toc: true
 ### 打印字符串unicode编码
 
 ```Java
-public static void printUnicode(String str) { 
-    for (int i = 0; i < str.length(); i++) { 
-        char c = str.charAt(i); 
-        System.out.printf("\\u%04X ", (int) c); 
-    } 
-    System.out.println(); 
+public static void printUnicode(String str) {
+    for (int i = 0; i < str.length(); i++) {
+        char c = str.charAt(i);
+        System.out.printf(String.format("\\u%04X ", (int) c));
+    }
+    System.out.println();
 }
 ```
 
