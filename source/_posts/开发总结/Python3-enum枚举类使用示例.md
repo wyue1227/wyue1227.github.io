@@ -1,8 +1,8 @@
 ---
 title: Python3-enum枚举类使用示例
 toc: true
-date: 2022-12-29 12:41:48
-updated: 2022-12-29 12:41:48
+date: 2021-10-28 12:41:48
+updated: 2021-10-28 12:41:48
 tags: [Python, 代码段]
 categories: 开发总结
 ---
