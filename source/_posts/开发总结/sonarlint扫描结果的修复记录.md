@@ -1,11 +1,11 @@
 ---
 title: sonarlint扫描结果的修复记录
+toc: true
 date: 2023-03-06 20:48:01
 updated: 2023-03-06 20:48:01
 tags: [Java]
 categories: 开发总结
 excerpt: 记录常见的错误修复方式
-toc: true
 ---
 
 ## Disable XML external entity (XXE) processing' 

@@ -1,11 +1,11 @@
 ---
 title: newbee-mall-api部署手顺
+toc: true
 date: 2023-01-10 20:07:08
 updated: 2023-01-10 20:07:08
 tags: [Java]
 categories: 手顺
 excerpt: 在服务器上部署新蜂商城的API
-toc: true
 ---
 
 ## 简介

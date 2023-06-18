@@ -1,10 +1,10 @@
 ---
 title: iOS配置Git同步Obsidian
+toc: true
 date: 2022-12-01 22:25:02
 tags: [iOS, Obsidian, Git]
 categories: 手顺
 excerpt: 利用Git，实现全平台版本管理与数据同步。
-toc: true
 ---
 
 ## 背景

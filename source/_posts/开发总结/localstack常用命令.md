@@ -1,11 +1,11 @@
 ---
 title: localstack常用命令
+toc: true
 date: 2023-05-11 20:51:49
 updated: 2023-05-11 20:51:49
 tags: AWS
 categories: 开发总结
 excerpt: 在wsl2中创建安装localstack，实现本地s3疏通
-toc: true
 ---
 
 ## 创建bucket

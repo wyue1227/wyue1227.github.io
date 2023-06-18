@@ -1,10 +1,10 @@
 ---
 title: final无法阻止数组值变换
+toc: true
 date: 2023-03-06 20:52:36
 updated: 2023-03-06 20:52:36
 tags: Java
 categories: 爬坑记录
-toc: true
 ---
 
 final是引用不可变，值还是可以改变的。

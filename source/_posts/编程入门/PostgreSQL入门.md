@@ -1,12 +1,12 @@
 ---
 title: PostgreSQL入门
+toc: true
 date: 2023-03-06 20:37:27
 updated: 2023-03-06 20:37:27
 tags: PostgreSQL
 categories: 
 - 编程入门
 excerpt: 初次使用PostgreSQL，记录下学习内容
-toc: true
 ---
 
 

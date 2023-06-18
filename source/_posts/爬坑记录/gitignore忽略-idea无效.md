@@ -1,9 +1,9 @@
 ---
 title: gitignore忽略.idea无效
+toc: true
 date: 2021-07-08 00:08:53
 tags: [Git, IDEA]
 categories: 爬坑记录
-toc: true
 ---
 ## 发生原因
 

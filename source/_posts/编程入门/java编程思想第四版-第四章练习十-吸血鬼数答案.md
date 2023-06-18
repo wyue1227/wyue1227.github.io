@@ -1,10 +1,10 @@
 ---
 title: java编程思想第四版_第四章练习十_吸血鬼数答案
+toc: true
 date: 2020-03-22 14:42:06
 tags: Java
 categories: 编程入门
 excerpt: Java入门题解
-toc: true
 ---
 
 ## 题目

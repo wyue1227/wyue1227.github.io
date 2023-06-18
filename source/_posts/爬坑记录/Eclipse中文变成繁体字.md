@@ -1,11 +1,11 @@
 ---
 title: Eclipse中，中文变成繁体字
+toc: true
 date: 2023-02-05 22:32:24
 updated: 2023-02-05 22:32:24
 tags: Eclipse
 categories: 爬坑记录
 excerpt: Eclipse中，格式化代码 Ctrl + Shift + F，同时是搜狗的简繁体转换快捷键。
-toc: true
 ---
 
 ## 问题描述：

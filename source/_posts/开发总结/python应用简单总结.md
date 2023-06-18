@@ -1,11 +1,11 @@
 ---
 title: python应用简单总结
+toc: true
 date: 2023-02-14 19:36:40
 updated: 2023-02-14 19:36:40
 tags: [Python, 代码段]
 categories: 开发总结
 excerpt: 最近用Python写了点代码生成的小工具，但是太久没写以至于边写边查，在此记录总结
-toc: true
 ---
 
 ### 跨文件调方法

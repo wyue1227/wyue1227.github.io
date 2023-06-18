@@ -1,5 +1,6 @@
 ---
 title: TortoiseGit合并commit
+toc: true
 date: 2023-03-01 20:54:28
 updated: 2023-03-01 20:54:28
 tags: [Git, TortoiseGit]

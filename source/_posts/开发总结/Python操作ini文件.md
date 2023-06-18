@@ -1,11 +1,11 @@
 ---
 title: Python操作ini文件
+toc: true
 date: 2023-03-01 20:45:21
 updated: 2023-03-01 20:45:21
 tags: [Python, 代码段]
 categories: 开发总结
 excerpt: 完善Python工具时整理用
-toc: true
 ---
 
 ## 前期说明

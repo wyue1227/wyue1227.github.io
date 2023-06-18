@@ -1,10 +1,10 @@
 ---
 title: ConfigParser读取properties
+toc: true
 date: 2023-04-12 20:45:10
 updated: 2023-04-12 20:45:10
 tags: [Python, 代码段]
 categories: 爬坑记录
-toc: true
 ---
 
 ConfigParser读取properties文件时，properties文件必须有默认的头，例如`[default]`,如果没有会报错。
