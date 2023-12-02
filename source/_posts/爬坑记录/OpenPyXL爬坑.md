@@ -30,7 +30,7 @@ wb.close()
 ## 运行结果
 ![](images/OpenPyXL爬坑/2023-11-22-22-40-02.png)
 
-## 总结
+## 图形问题解决
 
 根据运行结果可以看出，只是简单的打开、关闭一个 excel 文件，会导致图片以及图形的丢失。
 
@@ -46,11 +46,27 @@ wb.close()
 
 去 OpenPyXL 仓库上翻了翻，这居然是一个陈年老bug [https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1268](https://foss.heptapod.net/openpyxl/openpyxl/-/issues/1268)
 
-涉及到复杂场景的Excel脚本，还是要用VBA啊 =-=
+## 彻底解决
+
+使用 xlwings 库或者直接使用 VBA
+
+xlwings: [https://docs.xlwings.org/en/latest/quickstart.html#](https://docs.xlwings.org/en/latest/quickstart.html#)
 
 
+## xlwings示例
 
+```python
+import shutil
+import xlwings as xw
 
+path = "/Users/xxx/Documents/tmp/openPyXLTest.xlsx"
+copyFile = "/Users/xxx/Documents/tmp/openPyXLTest3.xlsx"
 
+shutil.copy(path, copyFile)
+wb = xw.Book(copyFile)
+wb.save(copyFile)
+wb.close()
+print("done")
+```
 
-
+![](images/OpenPyXL爬坑/2023-12-02-13-33-20.png)
