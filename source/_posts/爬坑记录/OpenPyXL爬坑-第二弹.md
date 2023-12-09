@@ -47,3 +47,9 @@ wb.close()
 已提交issue，期待回复 
 
 [https://foss.heptapod.net/openpyxl/openpyxl/-/issues/2119](https://foss.heptapod.net/openpyxl/openpyxl/-/issues/2119)
+
+回复结果：
+
+应该使用`sheet.sheet_view.pane.ySplit`获取冻结行数
+
+输出结果 `3.0`
