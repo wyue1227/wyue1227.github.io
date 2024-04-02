@@ -3,7 +3,7 @@ title: NotNull等校验注解不生效
 toc: true
 date: 2022-06-18 21:24:03
 updated: 2022-06-18 21:24:03
-tags: [Java]
+tags: [Java, SpringBoot]
 categories: 爬坑记录
 ---
 ## 背景
