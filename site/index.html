@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>五十音练习 · 日语入门</title>
+<meta name="description" content="给日语初学者的五十音练习网站：五十音表、分行学习、随机测验、错题复习，练习记录只保存在本机浏览器，不需要登录。">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fdfaf6">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="五十音练习">
+
+<!-- 只加载本站资源，不引用任何外部字体、CDN 或在线接口 -->
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body data-kana-font="sans">
+
+<header class="topbar">
+  <div>
+    <div class="topbar__title">五十音练习</div>
+    <div class="topbar__sub">日语入门 · 清音 46 音</div>
+  </div>
+  <div class="topbar__spacer"></div>
+  <div id="topbar-right" style="display:flex;gap:6px;align-items:center"></div>
+</header>
+
+<main id="main"></main>
+
+<nav class="tabbar" id="tabbar" aria-label="主导航"></nav>
+
+<div id="sheet-backdrop" class="sheet-backdrop" hidden>
+  <div class="sheet" role="dialog" aria-modal="true">
+    <div class="sheet__grab"></div>
+    <div id="sheet-body"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+
+<input type="file" id="import-file" accept=".json,application/json" hidden>
+
+<noscript>
+  <div style="padding:24px;font-family:sans-serif">
+    这个练习站需要浏览器开启 JavaScript 才能使用。
+  </div>
+</noscript>
+
+<script src="./js/data.js"></script>
+<script src="./js/db.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
