@@ -10,7 +10,7 @@
  * 3. 缓存版本升级时只删除旧版本的 Cache，不动其它任何存储。
  */
 
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const CACHE_NAME = `gojuon-shell-${CACHE_VERSION}`;
 
 /* 网站必需资源清单（相对路径，兼容 GitHub Pages 子路径部署） */

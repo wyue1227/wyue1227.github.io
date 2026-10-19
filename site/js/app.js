@@ -79,7 +79,7 @@
     daily: [],
     settings: { kanaFont: 'sans', speech: false },
     chart: { script: 'hira', filter: 'all' },
-    me: { filter: 'all' },
+    me: { filter: 'all', script: 'both' },
     review: { script: 'both' },
     quiz: null,
     setup: { script: 'hira', rows: [], mode: 'kana2romaji', count: 10, preferUnpracticed: true },
@@ -387,6 +387,7 @@
       <div class="card card--hero">
         <h2 class="hero-title">继续练习五十音</h2>
         <p class="hero-desc">不需要注册、不需要登录。练习记录只保存在这台设备的浏览器里。</p>
+        <div class="notice notice--warn">请用 Safari 等浏览器的<strong>普通标签页</strong>练习。无痕／隐私浏览的记录可能在关闭会话后丢失。重要记录可到「我的」导出备份。</div>
         <div class="seg" style="margin:14px 0" aria-label="练习假名种类">
           ${['hira', 'kata', 'both'].map((s) => `<button class="seg__btn ${state.setup.script === s ? 'is-on' : ''}" data-act="home-script" data-v="${s}">${SCRIPT_LABEL_SETUP[s]}</button>`).join('')}
         </div>
@@ -773,7 +774,7 @@
     const all = totals();
     const filter = state.me.filter;
     const rows = KANA_LIST.filter((k) => {
-      if (k.script !== state.chart.script) return false;
+      if (state.me.script !== 'both' && k.script !== state.me.script) return false;
       const s = state.stats.get(k.id);
       const st = kanaState(s);
       if (filter === 'none') return st.key === 'none';
@@ -802,8 +803,11 @@
         <div class="notice">柱高代表当天答题数量。记录保存在浏览器本地，换设备不会同步。</div>
       </div>
 
-      <div class="section-title">每个假名的练习次数与正确率 <small>${esc(SCRIPT_LABEL[state.chart.script])}</small></div>
+      <div class="section-title">每个假名的练习次数与正确率 <small>${esc(SCRIPT_LABEL_SETUP[state.me.script])}</small></div>
       <div class="card">
+        <div class="seg" aria-label="记录假名种类">
+          ${['both', 'hira', 'kata'].map((script) => `<button class="seg__btn ${state.me.script === script ? 'is-on' : ''}" data-act="me-script" data-v="${script}">${script === 'both' ? '全部假名' : SCRIPT_LABEL[script]}</button>`).join('')}
+        </div>
         <div class="filter-row">
           <button class="btn btn--sm ${filter === 'all' ? 'btn--soft' : ''}" data-act="me-filter" data-v="all">全部</button>
           <button class="btn btn--sm ${filter === 'practiced' ? 'btn--soft' : ''}" data-act="me-filter" data-v="practiced">已练习</button>
@@ -1217,6 +1221,7 @@
         case 'chart-script': state.chart.script = v; render(); break;
         case 'chart-filter': state.chart.filter = v; render(); break;
         case 'me-filter': state.me.filter = v; render(); break;
+        case 'me-script': state.me.script = v; render(); break;
         case 'kana': openKanaDetail(t.dataset.id); break;
         case 'close-sheet': closeSheet(v === 'ok'); break;
         case 'speak': speak(t.dataset.text); break;
