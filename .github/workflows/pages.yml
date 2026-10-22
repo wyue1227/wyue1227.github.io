@@ -1,46 +1,78 @@
-# 部署：五十音练习站 → GitHub Pages
-#
-# 说明：
-#  - 本站是纯静态网站（HTML / CSS / JS），没有构建步骤，不需要 npm install。
-#  - 使用 GitHub 官方 Pages 部署方式，权限来自内置 GITHUB_TOKEN，不使用任何个人令牌（已移除旧的 secrets.TOKEN）。
-#  - 只上传 site/ 目录，仓库里的 .git、备份、旧博客文章、node_modules 都不会被发布。
-#  - 旧流程（Hexo 构建后推送到 gh-pages 分支）已停用，gh-pages 分支本身保留未删除。
-
-name: Deploy site to GitHub Pages
+name: Verify and publish private diet viewer
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
   workflow_dispatch:
+    inputs:
+      publish:
+        description: "导出真实饮食并发布（需要配置数据库凭据和分享口令）"
+        type: boolean
+        default: false
+      initialize:
+        description: "首次发布/更换口令时全量初始化，不复用旧快照"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: diet-pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  verify:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - run: node --test tests/*.test.mjs
+      - run: node scripts/check-site.mjs
+
+  deploy:
+    if: github.event_name == 'workflow_dispatch' && inputs.publish
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload static site
-        uses: actions/upload-pages-artifact@v4
+      - uses: actions/checkout@v6
         with:
-          path: ./site
-
-      - name: Deploy to GitHub Pages
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - name: Export, validate and encrypt (no R2 access)
+        env:
+          DIET_SUPABASE_URL: ${{ vars.DIET_SUPABASE_URL }}
+          DIET_PROFILE_ID: ${{ secrets.DIET_PROFILE_ID }}
+          DIET_SUPABASE_KEY: ${{ secrets.DIET_SUPABASE_KEY }}
+          DIET_SHARE_PASSPHRASE: ${{ secrets.DIET_SHARE_PASSPHRASE }}
+          INITIALIZE: ${{ inputs.initialize }}
+        run: |
+          args=(--output .preview/publish)
+          if [ "$INITIALIZE" = "true" ]; then
+            args+=(--initialize)
+          else
+            args+=(--previous-url https://wyue1227.github.io/data/)
+          fi
+          node scripts/export-diet.mjs "${args[@]}"
+          node scripts/check-site.mjs .preview/publish
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./.preview/publish
+      - uses: actions/deploy-pages@v4
         id: deployment
-        uses: actions/deploy-pages@v4

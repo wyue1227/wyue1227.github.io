@@ -1,57 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>五十音练习 · 日语入门</title>
-<meta name="description" content="给日语初学者的五十音练习网站：五十音表、分行学习、随机测验、错题复习，练习记录只保存在本机浏览器，不需要登录。">
-<meta name="color-scheme" content="light">
-<meta name="theme-color" content="#fdfaf6">
-<meta name="format-detection" content="telephone=no">
-
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
-<link rel="apple-touch-icon" href="./icons/icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="五十音练习">
-
-<!-- 只加载本站资源，不引用任何外部字体、CDN 或在线接口 -->
-<link rel="stylesheet" href="./css/style.css">
-</head>
-<body data-kana-font="sans">
-
-<header class="topbar">
-  <div>
-    <div class="topbar__title">五十音练习</div>
-    <div class="topbar__sub">日语入门 · 清音 46 音</div>
-  </div>
-  <div class="topbar__spacer"></div>
-  <div id="topbar-right" style="display:flex;gap:6px;align-items:center"></div>
-</header>
-
-<main id="main"></main>
-
-<nav class="tabbar" id="tabbar" aria-label="主导航"></nav>
-
-<div id="sheet-backdrop" class="sheet-backdrop" hidden>
-  <div class="sheet" role="dialog" aria-modal="true">
-    <div class="sheet__grab"></div>
-    <div id="sheet-body"></div>
-  </div>
-</div>
-
-<div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
-
-<input type="file" id="import-file" accept=".json,application/json" hidden>
-
-<noscript>
-  <div style="padding:24px;font-family:sans-serif">
-    这个练习站需要浏览器开启 JavaScript 才能使用。
-  </div>
-</noscript>
-
-<script src="./js/data.js"></script>
-<script src="./js/db.js"></script>
-<script src="./js/app.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta name="description" content="按日期查看三餐与热量的私密饮食记录。" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'"
+    />
+    <meta name="theme-color" content="#f6f7f4" />
+    <title>食记 · 每日饮食</title>
+    <link rel="icon" href="./icons/meal.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./css/style.css?v=diet-1" />
+    <script type="module" src="./js/app.js?v=diet-1"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./"
+        ><span class="brand-icon" aria-hidden="true">食</span
+        ><span>食记<small>EVERYDAY TABLE</small></span></a
+      >
+      <div class="header-right">
+        <span class="privacy-label">私密饮食记录</span
+        ><button id="lock" class="quiet-button" hidden>锁定</button>
+      </div>
+    </header>
+    <main>
+      <section id="gate" class="gate" aria-labelledby="gate-title">
+        <div class="gate-copy">
+          <p class="eyebrow">A LITTLE EVERYDAY</p>
+          <h1 id="gate-title">每天吃了什么，<br />在这里一眼看清。</h1>
+          <p class="intro">
+            三餐、份量与热量，按日期好好收在一起。<br />只有分享口令才能打开真实记录。
+          </p>
+          <p class="gate-note">◌　纯文字 · 按日查看 · 仅本站资源</p>
+        </div>
+        <div class="unlock-card">
+          <div class="line-icon" aria-hidden="true">⌑</div>
+          <h2>打开饮食记录</h2>
+          <p class="muted">在这台设备上解密，不上传口令。</p>
+          <form id="unlock-form">
+            <label for="passphrase">分享口令</label>
+            <div class="password-row">
+              <input
+                id="passphrase"
+                type="password"
+                required
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="输入口令"
+                aria-describedby="gate-status"
+              /><button
+                id="show-pass"
+                class="quiet-button"
+                type="button"
+                aria-label="显示口令"
+                aria-pressed="false"
+              >
+                显示
+              </button>
+            </div>
+            <button id="unlock" class="primary-button" type="submit">
+              解锁查看 <span aria-hidden="true">→</span>
+            </button>
+          </form>
+          <p
+            id="gate-status"
+            class="status"
+            role="status"
+            aria-live="polite"
+          ></p>
+          <div class="demo-divider"><span>先看看页面</span></div>
+          <button id="demo" class="secondary-button">查看虚构示例</button>
+          <p class="fine-print">
+            口令只用于本次浏览，刷新或锁定后需重新输入。<br />示例不包含真实饮食数据。
+          </p>
+        </div>
+      </section>
+      <section id="dashboard" hidden aria-labelledby="page-title">
+        <div id="demo-banner" class="demo-banner" hidden>
+          <span>示例模式 · 以下均为虚构数据</span
+          ><button id="exit-demo" class="quiet-button">返回解锁</button>
+        </div>
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">DAILY FOOD RECORDS</p>
+            <h1 id="page-title">每日饮食</h1>
+            <p id="updated-label" class="muted"></p>
+          </div>
+          <button id="refresh" class="secondary-button">刷新记录</button>
+        </div>
+        <div class="workspace">
+          <aside class="calendar-panel" aria-label="选择日期">
+            <div class="month-heading">
+              <button id="prev-month" class="icon-button" aria-label="上个月">
+                ‹</button
+              ><label class="month-picker"
+                ><span class="sr-only">选择月份</span
+                ><select id="month-select"></select></label
+              ><button id="next-month" class="icon-button" aria-label="下个月">
+                ›
+              </button>
+            </div>
+            <div class="weekdays" aria-hidden="true">
+              <span>一</span><span>二</span><span>三</span><span>四</span
+              ><span>五</span><span>六</span><span>日</span>
+            </div>
+            <div id="calendar" class="calendar-grid"></div>
+            <div class="calendar-legend">日期下为已记录的估算 kcal · * 含未知热量</div>
+            <div class="calendar-footer">
+              <span id="month-count"></span
+              ><button id="latest" class="text-button">最近记录 ↗</button>
+            </div>
+            <div class="filter-box">
+              <label for="search">在本月记录中查找</label
+              ><input
+                id="search"
+                type="search"
+                autocomplete="off"
+                placeholder="食品、餐次或备注"
+              />
+              <p id="search-status" class="fine-print"></p>
+              <div id="search-results" class="search-results"></div>
+            </div>
+            <p class="sidebar-note">
+              重复吃过的食品仍按次记录，<br />这里不会合并或删掉它们。
+            </p>
+          </aside>
+          <div class="day-panel" aria-busy="false">
+            <p
+              id="data-status"
+              class="status"
+              role="status"
+              aria-live="polite"
+            ></p>
+            <div class="day-heading">
+              <div>
+                <p id="day-weekday" class="eyebrow"></p>
+                <h2 id="day-title"></h2>
+              </div>
+              <div class="day-controls">
+                <button id="prev-day" class="icon-button" aria-label="前一天">
+                  ←</button
+                ><button id="next-day" class="icon-button" aria-label="后一天">
+                  →
+                </button>
+              </div>
+            </div>
+            <div class="summary-grid">
+              <div class="summary-card energy-card">
+                <p>已记录的估算热量</p>
+                <strong id="day-kcal">—</strong><span id="energy-note"></span>
+              </div>
+              <div class="summary-card">
+                <p>饮食记录</p>
+                <strong id="day-entries">—</strong><span id="entry-note"></span>
+              </div>
+              <div class="summary-card">
+                <p>记录完整度</p>
+                <strong id="day-completeness" class="summary-word">—</strong
+                ><span id="completeness-note"></span>
+              </div>
+            </div>
+            <div id="reported-total" class="reported-total" hidden></div>
+            <div id="meal-list"></div>
+            <footer class="data-note">
+              <span aria-hidden="true">ⓘ</span>
+              <p>
+                热量以近似整数显示，区间取中间值，原始记录保留。未记录不代表没吃，热量未知也不等于
+                0。此页为只读快照，不会修改原始记录。
+              </p>
+            </footer>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <span>食记 · 把日常看清楚</span><span>文字记录，不加载照片</span>
+    </footer>
+    <noscript
+      ><p>请开启 JavaScript，以便在浏览器中解密并查看记录。</p></noscript
+    >
+  </body>
 </html>
