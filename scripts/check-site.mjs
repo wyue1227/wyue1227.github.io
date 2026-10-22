@@ -1,6 +1,7 @@
 import { readFile, readdir } from "node:fs/promises";
 import { resolve, join, extname } from "node:path";
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 const root = resolve(process.argv[2] || "site");
 async function walk(dir) {
   const files = [];
@@ -31,10 +32,22 @@ for (const file of files) {
     "Potential credential in " + file,
   );
   if (file.includes("/data/")) {
+    assert.match(file.slice(join(root, "data").length + 1), /^(vault|m-[a-f0-9]{32})\.json$/);
     const envelope = JSON.parse(text);
+    const keys = (value, expected) => assert.deepEqual(Object.keys(value || {}).sort(), expected.split(",").sort());
+    keys(envelope, "format,kdf,cipher,ciphertext");
+    keys(envelope.kdf, "name,hash,iterations,salt");
+    keys(envelope.cipher, "name,iv");
     assert.equal(envelope.format, "diet-vault-v1");
+    assert.equal(envelope.kdf.name, "PBKDF2");
+    assert.equal(envelope.kdf.hash, "SHA-256");
+    assert.equal(envelope.kdf.iterations, 600000);
+    assert.equal(envelope.cipher.name, "AES-GCM");
+    assert.equal(Buffer.from(envelope.kdf.salt, "base64").length, 16);
+    assert.equal(Buffer.from(envelope.cipher.iv, "base64").length, 12);
     assert.equal(typeof envelope.ciphertext, "string");
-    assert.ok(!("entries" in envelope));
+    assert.ok(Buffer.from(envelope.ciphertext, "base64").length >= 16);
+    if (!file.endsWith("/vault.json")) assert.ok(file.endsWith("/m-" + createHash("sha256").update(text).digest("hex").slice(0, 32) + ".json"));
   }
 }
 for (const match of html.matchAll(/(?:src|href)="([^"]+)"/g))

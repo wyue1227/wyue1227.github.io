@@ -1,19 +1,10 @@
-name: Verify and publish private diet viewer
+name: Deploy diet viewer to GitHub Pages
 
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
-    inputs:
-      publish:
-        description: "导出真实饮食并发布（需要配置数据库凭据和分享口令）"
-        type: boolean
-        default: false
-      initialize:
-        description: "首次发布/更换口令时全量初始化，不复用旧快照"
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -36,10 +27,10 @@ jobs:
       - run: node scripts/check-site.mjs
 
   deploy:
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: verify
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     permissions:
       contents: read
       pages: write
@@ -51,38 +42,9 @@ jobs:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v6
-        with:
-          node-version: "22"
-      - name: Export, validate and encrypt (no R2 access)
-        env:
-          DIET_SUPABASE_URL: ${{ vars.DIET_SUPABASE_URL }}
-          DIET_PROFILE_ID: ${{ secrets.DIET_PROFILE_ID }}
-          DIET_SUPABASE_KEY: ${{ secrets.DIET_SUPABASE_KEY }}
-          DIET_SHARE_PASSPHRASE: ${{ secrets.DIET_SHARE_PASSPHRASE }}
-          # A code release builds a complete fresh snapshot, including first deployment.
-          # Daily API dispatches keep incremental month reuse unless explicitly initialized.
-          INITIALIZE: ${{ github.event_name == 'push' || inputs.initialize }}
-        run: |
-          missing=()
-          for name in DIET_SUPABASE_URL DIET_PROFILE_ID DIET_SUPABASE_KEY DIET_SHARE_PASSPHRASE; do
-            if [ -z "${!name}" ]; then missing+=("$name"); fi
-          done
-          if [ "${#missing[@]}" -gt 0 ]; then
-            echo "::error::Missing GitHub Actions configuration: ${missing[*]}. See docs/饮食面板部署.md. Current live site is unchanged."
-            exit 1
-          fi
-          args=(--output .preview/publish)
-          if [ "$INITIALIZE" = "true" ]; then
-            args+=(--initialize)
-          else
-            args+=(--previous-url https://wyue1227.github.io/data/)
-          fi
-          node scripts/export-diet.mjs "${args[@]}"
-          node scripts/check-site.mjs .preview/publish
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: ./.preview/publish
+          path: ./site
       - uses: actions/deploy-pages@v4
         id: deployment

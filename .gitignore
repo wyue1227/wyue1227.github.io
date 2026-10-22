@@ -19,11 +19,11 @@ public/
 # 本地预览临时目录
 .preview/
 
-# Private inputs and generated encrypted snapshots are published as artifacts, never committed.
+# Raw inputs and passphrases never enter Git. site/data contains ciphertext only,
+# imported by the separate GithubAction repository.
 .env
 .env.*
 .dev.vars*
 .secrets/
-site/data/
 output/
 .playwright-cli/
