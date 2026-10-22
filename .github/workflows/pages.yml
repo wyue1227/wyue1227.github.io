@@ -36,7 +36,7 @@ jobs:
       - run: node scripts/check-site.mjs
 
   deploy:
-    if: github.event_name == 'workflow_dispatch' && inputs.publish
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
     needs: verify
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -60,8 +60,18 @@ jobs:
           DIET_PROFILE_ID: ${{ secrets.DIET_PROFILE_ID }}
           DIET_SUPABASE_KEY: ${{ secrets.DIET_SUPABASE_KEY }}
           DIET_SHARE_PASSPHRASE: ${{ secrets.DIET_SHARE_PASSPHRASE }}
-          INITIALIZE: ${{ inputs.initialize }}
+          # A code release builds a complete fresh snapshot, including first deployment.
+          # Daily API dispatches keep incremental month reuse unless explicitly initialized.
+          INITIALIZE: ${{ github.event_name == 'push' || inputs.initialize }}
         run: |
+          missing=()
+          for name in DIET_SUPABASE_URL DIET_PROFILE_ID DIET_SUPABASE_KEY DIET_SHARE_PASSPHRASE; do
+            if [ -z "${!name}" ]; then missing+=("$name"); fi
+          done
+          if [ "${#missing[@]}" -gt 0 ]; then
+            echo "::error::Missing GitHub Actions configuration: ${missing[*]}. See docs/饮食面板部署.md. Current live site is unchanged."
+            exit 1
+          fi
           args=(--output .preview/publish)
           if [ "$INITIALIZE" = "true" ]; then
             args+=(--initialize)

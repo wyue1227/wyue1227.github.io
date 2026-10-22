@@ -6,7 +6,7 @@
 
 - 保留清晰的面板交互：月份与日历选日期、按餐次查看、份量/热量原文/备注、本月关键词查找。
 - 只展示文字，不读取 R2、照片或其他个人记录。
-- 区间热量不取中点；未知不算零。条目合计与来源中的“当日汇总”分别展示，绝不相加。
+- 热量显示近似整数，区间取中间值，原始数据不改；未知不算零。条目合计与来源中的“当日汇总”分别展示，绝不相加。
 - 食品名重复正常保留，唯一身份是源记录 ID；不生成冗长日记。
 - 页面所有脚本、字体（系统字体）、样式和数据只依赖本站，不在浏览时连接 Cloudflare Worker/Supabase/R2。
 - 分享口令在浏览器本地解密；不上传、不保存到 localStorage/IndexedDB，15分钟无操作或后台5分钟自动锁定。此功能保护新访问，不是撤回已下载内容的账号系统。
@@ -44,7 +44,7 @@ python3 -m http.server 8138 --bind 127.0.0.1 --directory .preview/private-test
 
 ## 发布工作流与午夜任务
 
-`.github/workflows/pages.yml`：push/PR只跑验证；手动/外部API调用时勾选publish才读真实数据并部署。第一次还须勾选initialize；以后的日常调用initialize=false复用旧快照。
+`.github/workflows/pages.yml`：推送main后自动验证、全量构建加密快照并部署（包括首次发布）；PR只验证，不读取真实数据。需要一次性配置部署文档中的4项Variable/Secrets，缺配置时失败并保留旧站点。手动/外部API调用仍须publish=true，initialize=false复用旧快照；首次手动发布须initialize=true。
 
 没有增加GitHub原生cron，避免重现以前的调度问题。计划由现有GithubAction仓库的新增任务派发本仓库工作流，每天日本00:00（UTC15:00）。**该跨仓库调度尚未部署**，需要本仓库Secrets、目标仓库Actions权限及现有调度器的显式接入。旧Notion任务本次没有改动。
 
